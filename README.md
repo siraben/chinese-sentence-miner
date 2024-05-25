@@ -140,7 +140,38 @@ Determines whether to show only the easiest sentences when outputting.
 Specifies the target HSK level when searching for HSK sentences.
 
 ### Examples
-*See examples section for various usage scenarios.*
+
+#### Example 1: Search for HSK sentences with an average of 4.3 using word-by-word splitting
+
+```bash
+python3 assigner.py -l "data/known.txt" -t "wo" -o "HSK" --mine --target 4.3
+```
+
+This command searches for sentences with an average HSK level of 4.3, using word-by-word splitting.
+
+#### Example 2: Search for one HSK sentence with 妈妈 in it using word-by-word splitting
+
+```bash
+python3 assigner.py -l "data/known.txt" -t "wo" -o "HSK" --mine --string "妈妈" --limit 1
+```
+
+This command searches for one sentence containing the word "妈妈", using word-by-word splitting and HSK level.
+
+#### Example 3: Sort `sentences.tsv` based on ascending HSK averages using character splitting, and then create a line chart of it
+
+```bash
+python3 assigner.py -l "data/known.txt" -t "ch" -o "HSK" -s "HSK" -v
+```
+
+This command sorts the sentences based on ascending HSK averages using character splitting and visualizes the distribution as a line chart.
+
+#### Example 4: Sort `sentences.tsv` based on descending custom ratio order using word-by-word splitting. Then search all sentences that contain both 我 and 你, searching for sentences based on custom ratio and ensuring they all have at least 40% of their words understood. Pick any sentences between 0.4 and 1 comprehension (i.e. not only those with the highest comprehension)
+
+```bash
+python3 assigner.py -l "data/known.txt" -t "wo" -s "custom" --string "我 你" --smallest 0.4 --easy False --mine --output custom
+```
+
+This command sorts the sentences by descending custom ratio using word-by-word splitting, then searches for sentences containing both "我" and "你" with at least 40% comprehension, and outputs sentences with comprehension between 0.4 and 1.
 
 ## Contributing
 
